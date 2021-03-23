@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Development\RouterApp\angular-router-sample\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! D:\Development\TodoList\TodoList\src\polyfills.ts */"hN/g");
 
 
 /***/ }),
