@@ -89,11 +89,15 @@ __webpack_require__.r(__webpack_exports__);
 class CovidService {
     constructor(http) {
         this.http = http;
-        //covidData = 'https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Switzerland.csv';
+        //  covidData = 'https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Switzerland.csv';
         this.covidData = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Switzerland.csv';
+        this.covidCases = 'https://raw.githubusercontent.com/Montueron/Covid/main/cases/casesFR.csv';
     }
     getInfo() {
         return this.http.get(this.covidData, { responseType: 'text' });
+    }
+    getCasesInfo() {
+        return this.http.get(this.covidCases, { responseType: 'text' });
     }
 }
 CovidService.ɵfac = function CovidService_Factory(t) { return new (t || CovidService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -116,11 +120,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _covid_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../covid.service */ "EoxM");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _covid_cases_covid_cases_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../covid-cases/covid-cases.component */ "hASS");
 
 
 
 
-function CovidVaccinComponent_div_0_div_5_Template(rf, ctx) { if (rf & 1) {
+
+function CovidVaccinComponent_div_8_div_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -129,15 +135,15 @@ function CovidVaccinComponent_div_0_div_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("+", covid_r1.firstTimeDelta, "");
 } }
-function CovidVaccinComponent_div_0_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
+function CovidVaccinComponent_div_8_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, CovidVaccinComponent_div_0_div_5_Template, 2, 1, "div", 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, CovidVaccinComponent_div_8_div_5_Template, 2, 1, "div", 5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](6, "hr");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -188,11 +194,45 @@ class CovidVaccinComponent {
     }
 }
 CovidVaccinComponent.ɵfac = function CovidVaccinComponent_Factory(t) { return new (t || CovidVaccinComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_covid_service__WEBPACK_IMPORTED_MODULE_2__["CovidService"])); };
-CovidVaccinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: CovidVaccinComponent, selectors: [["app-covid-vaccin"]], decls: 1, vars: 1, consts: [[4, "ngFor", "ngForOf"], [4, "ngIf"]], template: function CovidVaccinComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, CovidVaccinComponent_div_0_Template, 7, 5, "div", 0);
+CovidVaccinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: CovidVaccinComponent, selectors: [["app-covid-vaccin"]], decls: 11, vars: 1, consts: [["width", "100%"], ["width", "50%", 2, "vertical-align", "top"], ["style", "margin:20px;", 4, "ngFor", "ngForOf"], [2, "vertical-align", "top"], [2, "margin", "20px"], [4, "ngIf"]], template: function CovidVaccinComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "table", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "thead");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "td");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Vaccinations");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Cases Fr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "td", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](8, CovidVaccinComponent_div_8_Template, 7, 5, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "td", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](10, "app-covid-cases");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](8);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.covidData.reverse());
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb3ZpZC12YWNjaW4uY29tcG9uZW50LmNzcyJ9 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], _covid_cases_covid_cases_component__WEBPACK_IMPORTED_MODULE_4__["CovidCasesComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb3ZpZC12YWNjaW4uY29tcG9uZW50LmNzcyJ9 */"] });
+
+
+/***/ }),
+
+/***/ "OyJ/":
+/*!********************************!*\
+  !*** ./src/app/model/Cases.ts ***!
+  \********************************/
+/*! exports provided: Cases */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cases", function() { return Cases; });
+class Cases {
+}
 
 
 /***/ }),
@@ -213,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppComponent {
     constructor() {
-        this.title = 'TodoList';
+        this.title = 'Covid Status';
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
@@ -243,7 +283,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _covid_vaccin_covid_vaccin_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./covid-vaccin/covid-vaccin.component */ "IcoG");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "vY5A");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _covid_cases_covid_cases_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./covid-cases/covid-cases.component */ "hASS");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
@@ -257,8 +299,8 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({ providers: [], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjector"]({ providers: [], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
@@ -266,14 +308,117 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
         _list_list_component__WEBPACK_IMPORTED_MODULE_3__["ListComponent"],
-        _covid_vaccin_covid_vaccin_component__WEBPACK_IMPORTED_MODULE_6__["CovidVaccinComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _covid_vaccin_covid_vaccin_component__WEBPACK_IMPORTED_MODULE_6__["CovidVaccinComponent"],
+        _covid_cases_covid_cases_component__WEBPACK_IMPORTED_MODULE_9__["CovidCasesComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
         _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
         _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_5__["DragDropModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]] }); })();
+
+
+/***/ }),
+
+/***/ "hASS":
+/*!******************************************************!*\
+  !*** ./src/app/covid-cases/covid-cases.component.ts ***!
+  \******************************************************/
+/*! exports provided: CovidCasesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CovidCasesComponent", function() { return CovidCasesComponent; });
+/* harmony import */ var _model_Cases__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/Cases */ "OyJ/");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _covid_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../covid.service */ "EoxM");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
+
+
+
+function CovidCasesComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](7, "hr");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const covid_r1 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", covid_r1.date, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](covid_r1.new);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" - ", covid_r1.total, "");
+} }
+class CovidCasesComponent {
+    constructor(covid) {
+        this.covid = covid;
+        this.covidCases = [];
+    }
+    ngOnInit() {
+        this.getData();
+    }
+    getData() {
+        this.covid.getCasesInfo().subscribe(data => {
+            const list = data.split(';');
+            console.log(list.length);
+            list.splice(0, list.length - 10);
+            list.splice(9, 1);
+            list.forEach(e => {
+                let myValues = e.split(',');
+                let covidCase = new _model_Cases__WEBPACK_IMPORTED_MODULE_0__["Cases"]();
+                covidCase.date = myValues[0].replace("\"", "");
+                covidCase.new = parseInt(myValues[1]);
+                covidCase.total = parseInt(myValues[2]);
+                this.covidCases.push(covidCase);
+            });
+        });
+        // this.covid.getInfo().subscribe(data => {
+        // const list = data.split('\n');
+        // console.log(list.length);
+        // list.splice(0, list.length-10);
+        // list.splice(9,1);
+        // console.log(list.length);
+        // let previousOneShot = 0;
+        // list.forEach( e => {
+        //   let myValues = e.split(',');
+        // let vac = new Vaccination();
+        // vac.date = myValues[1];
+        // vac.delivered =  parseInt(myValues[5]);
+        // vac.OneShot = parseInt(myValues[6]);
+        // vac.TwoShots = parseInt(myValues[7]);
+        // if(previousOneShot != 0){
+        //   // console.log("Number persons vaccinated first time " + (vac.OneShot - previousOneShot));
+        //   vac.firstTimeDelta = vac.OneShot - previousOneShot;
+        // }
+        // previousOneShot = vac.OneShot;
+        // // let v = e.split(',')[e.split(',').length-1]
+        // // console.log(myValues);
+        // // let newString = e.split(',')[1]+" - ";
+        // // newString += e.split(',')[e.split(',').length-2];
+        // // this.covidData.push(myValues[1] + " - "+myValues[5]);
+        // this.covidData.push(vac);
+        // });
+        // });
+    }
+}
+CovidCasesComponent.ɵfac = function CovidCasesComponent_Factory(t) { return new (t || CovidCasesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_covid_service__WEBPACK_IMPORTED_MODULE_2__["CovidService"])); };
+CovidCasesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: CovidCasesComponent, selectors: [["app-covid-cases"]], decls: 1, vars: 1, consts: [["style", "margin:20px;", 4, "ngFor", "ngForOf"], [2, "margin", "20px"]], template: function CovidCasesComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, CovidCasesComponent_div_0_Template, 8, 3, "div", 0);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.covidCases.reverse());
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb3ZpZC1jYXNlcy5jb21wb25lbnQuY3NzIn0= */"] });
 
 
 /***/ }),
