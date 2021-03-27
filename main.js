@@ -90,8 +90,9 @@ class CovidService {
     constructor(http) {
         this.http = http;
         //  covidData = 'https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Switzerland.csv';
-        this.covidData = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Switzerland.csv';
-        this.covidCases = 'https://raw.githubusercontent.com/Montueron/Covid/main/cases/casesFR.csv';
+        //  covidData = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Switzerland.csv';
+        this.covidData = 'https://raw.githubusercontent.com/Montueron/Covid/main/vaccins/vaccinsCH.csv';
+        this.covidCases = 'https://raw.githubusercontent.com/Montueron/Covid/main/cases/casesFR_2.csv';
     }
     getInfo() {
         return this.http.get(this.covidData, { responseType: 'text' });
@@ -166,28 +167,20 @@ class CovidVaccinComponent {
     getData() {
         this.covid.getInfo().subscribe(data => {
             const list = data.split('\n');
-            console.log(list.length);
             list.splice(0, list.length - 10);
             list.splice(9, 1);
-            console.log(list.length);
             let previousOneShot = 0;
             list.forEach(e => {
                 let myValues = e.split(',');
                 let vac = new _Vaccinations__WEBPACK_IMPORTED_MODULE_0__["Vaccination"]();
-                vac.date = myValues[1];
-                vac.delivered = parseInt(myValues[5]);
-                vac.OneShot = parseInt(myValues[6]);
-                vac.TwoShots = parseInt(myValues[7]);
+                vac.date = myValues[0];
+                vac.delivered = parseInt(myValues[1]);
+                vac.OneShot = parseInt(myValues[2]);
+                vac.TwoShots = parseInt(myValues[3]);
                 if (previousOneShot != 0) {
-                    // console.log("Number persons vaccinated first time " + (vac.OneShot - previousOneShot));
                     vac.firstTimeDelta = vac.OneShot - previousOneShot;
                 }
                 previousOneShot = vac.OneShot;
-                // let v = e.split(',')[e.split(',').length-1]
-                // console.log(myValues);
-                // let newString = e.split(',')[1]+" - ";
-                // newString += e.split(',')[e.split(',').length-2];
-                // this.covidData.push(myValues[1] + " - "+myValues[5]);
                 this.covidData.push(vac);
             });
         });
@@ -371,46 +364,18 @@ class CovidCasesComponent {
     }
     getData() {
         this.covid.getCasesInfo().subscribe(data => {
-            const list = data.split(';');
-            console.log(list.length);
+            const list = data.split('\n');
             list.splice(0, list.length - 10);
             list.splice(9, 1);
             list.forEach(e => {
                 let myValues = e.split(',');
                 let covidCase = new _model_Cases__WEBPACK_IMPORTED_MODULE_0__["Cases"]();
-                covidCase.date = myValues[0].replace("\"", "");
+                covidCase.date = myValues[0];
                 covidCase.new = parseInt(myValues[1]);
                 covidCase.total = parseInt(myValues[2]);
                 this.covidCases.push(covidCase);
             });
         });
-        // this.covid.getInfo().subscribe(data => {
-        // const list = data.split('\n');
-        // console.log(list.length);
-        // list.splice(0, list.length-10);
-        // list.splice(9,1);
-        // console.log(list.length);
-        // let previousOneShot = 0;
-        // list.forEach( e => {
-        //   let myValues = e.split(',');
-        // let vac = new Vaccination();
-        // vac.date = myValues[1];
-        // vac.delivered =  parseInt(myValues[5]);
-        // vac.OneShot = parseInt(myValues[6]);
-        // vac.TwoShots = parseInt(myValues[7]);
-        // if(previousOneShot != 0){
-        //   // console.log("Number persons vaccinated first time " + (vac.OneShot - previousOneShot));
-        //   vac.firstTimeDelta = vac.OneShot - previousOneShot;
-        // }
-        // previousOneShot = vac.OneShot;
-        // // let v = e.split(',')[e.split(',').length-1]
-        // // console.log(myValues);
-        // // let newString = e.split(',')[1]+" - ";
-        // // newString += e.split(',')[e.split(',').length-2];
-        // // this.covidData.push(myValues[1] + " - "+myValues[5]);
-        // this.covidData.push(vac);
-        // });
-        // });
     }
 }
 CovidCasesComponent.ɵfac = function CovidCasesComponent_Factory(t) { return new (t || CovidCasesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_covid_service__WEBPACK_IMPORTED_MODULE_2__["CovidService"])); };
